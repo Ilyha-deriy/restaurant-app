@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +22,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function() {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+});
 
 require __DIR__.'/auth.php';
