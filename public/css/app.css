@@ -918,6 +918,10 @@ select {
 .bg-transparent {
   background-color: transparent;
 }
+.bg-slate-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
 .fill-current {
   fill: currentColor;
 }
@@ -962,13 +966,13 @@ select {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 .pt-6 {
   padding-top: 1.5rem;
