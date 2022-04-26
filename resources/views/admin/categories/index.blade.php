@@ -51,6 +51,20 @@
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $category->description }}
                                             </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <div class="flex space-x-2">
+                                                    <a href="{{ route('admin.categories.edit', $category->id) }}" class="px-4 py-2 bg-green-500 hover:bg-gray-700 rounded-lg text-white">Edit</a>
+                                                    <form action="{{ route('admin.categories.destroy', $category->id) }}"
+                                                        method="POST"
+                                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white"
+                                                        onsubmit="return confirm('Are you sure?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
 
