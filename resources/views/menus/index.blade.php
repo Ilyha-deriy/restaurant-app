@@ -12,7 +12,8 @@
                   </p>
                 </div>
                 <div class="flex items-center justify-between p-4">
-                  <span class="text-xl text-green-600">${{ $menu->price }}</span>
+                    <a href="{{ route('menus.addToCart', ['id' => $menu->id]) }}" class="px-4 py-2 bg-green-600 text-green-50">Order Now</a>
+                    <span class="text-xl text-green-600">${{ $menu->price }}</span>
                 </div>
               </div>
             @endforeach
