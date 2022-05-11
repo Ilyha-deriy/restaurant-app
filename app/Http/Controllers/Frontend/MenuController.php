@@ -22,6 +22,16 @@ class MenuController extends Controller
         $cart->add($menu, $menu->id);
 
         $request->session()->put('cart', $cart);
+        session()->save();
         return redirect()->route('menus.index');
+    }
+
+    public function getCart() {
+        if (!session()->has('cart')){
+            return view('menus.shopping-cart');
+        }
+        $oldcart = session()->get('cart');
+        $cart = new Cart($oldcart);
+        return view('menus.shopping-cart', ['menus' => $cart->items, 'total_price' => $cart->total_price, 'total_quantity' => $cart->total_quantity]);
     }
 }

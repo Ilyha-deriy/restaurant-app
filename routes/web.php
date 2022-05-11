@@ -34,6 +34,8 @@ Route::post('/reservation/step-one', [FrontendReservationController::class, 'sto
 Route::get('/reservation/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
 Route::post('/reservation/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
 Route::get('/add-to-cart/{id}', [FrontendMenuController::class, 'getAddToCart'])->name('menus.addToCart');
+Route::get('/menus/shoping-cart', [FrontendMenuController::class, 'getCart'])->name('menus.shoppingCart');
+
 
 
 Route::get('/dashboard', function () {
