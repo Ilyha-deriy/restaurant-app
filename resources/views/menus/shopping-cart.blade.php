@@ -25,9 +25,7 @@
                       alt="Image" /></td>
                   <td class="p-4 px-6 text-center whitespace-nowrap">{{ $menu['item']['name'] }}</td>
                   <td class="p-4 px-6 text-center whitespace-nowrap">
-                    <div>
-                      <p class="w-12 text-center bg-gray-100 outline-none">{{ $menu['quantity'] }}</p>
-                    </div>
+                      {{ $menu['quantity'] }}
                   </td>
                   <td class="p-4 px-6 text-center whitespace-nowrap">${{ $menu['price'] }}</td>
                   <td class="p-4 px-6 text-center whitespace-nowrap">
@@ -59,7 +57,7 @@
           </table>
 
             <div class="flex justify-end mt-4 space-x-2">
-              <button
+              <a href="{{ route('checkout') }}"
                 class="
                   px-6
                   py-3
@@ -69,15 +67,39 @@
                 "
               >
                 Proceed to Checkout
-              </button>
+            </a>
           </div>
       </div>
       </div>
           @else
-              <div class="row">
-                  <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                      <h2>No Items in Cart!</h2>
-                  </div>
+          <div class="container p-8 mx-auto mt-12 bg-white">
+            <div class="w-full overflow-x-auto">
+              <div class="my-2">
+                <h3 class="text-xl font-bold tracking-wider">Shopping Cart Items</h3>
               </div>
+              <table class="w-full shadow-inner">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="px-6 py-3 font-bold whitespace-nowrap">Image</th>
+                    <th class="px-6 py-3 font-bold whitespace-nowrap">Product</th>
+                    <th class="px-6 py-3 font-bold whitespace-nowrap">Quantity</th>
+                    <th class="px-6 py-3 font-bold whitespace-nowrap">Price</th>
+                    <th class="px-6 py-3 font-bold whitespace-nowrap">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <td class="p-4 px-6 text-center whitespace-nowrap"></td>
+                    <td class="p-4 px-6 text-center whitespace-nowrap"></td>
+                    <td class="p-4 px-6 text-center whitespace-nowrap">
+                        <div class="inline-flex items-center bg-white leading-none text-purple-600 rounded-full p-2 shadow text-teal text-sm">
+                            <a href="{{ route('menus.index') }}" class="inline-flex bg-indigo-500 hover:bg-indigo-700 text-white rounded-full h-6 px-3 justify-center items-center">Go To The Menu</a>
+                            <span class="inline-flex px-2">No Items In The Cart!</span>
+                        </div>
+                    </td>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
           @endif
 </x-guest-layout>

@@ -34,4 +34,13 @@ class MenuController extends Controller
         $cart = new Cart($oldcart);
         return view('menus.shopping-cart', ['menus' => $cart->items, 'total_price' => $cart->total_price, 'total_quantity' => $cart->total_quantity]);
     }
+
+    public function getCheckout() {
+        if (!session()->has('cart')){
+            return view('menus.shopping-cart');
+        }
+        $oldcart = session()->get('cart');
+        $cart = new Cart($oldcart);
+        return view('menus.checkout', ['menus' => $cart->items, 'total_price' => $cart->total_price, 'total_quantity' => $cart->total_quantity]);
+    }
 }
