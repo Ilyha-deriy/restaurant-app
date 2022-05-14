@@ -57,7 +57,7 @@
           </table>
 
             <div class="flex justify-end mt-4 space-x-2">
-              <a href="{{ route('checkout') }}"
+              <a href="{{ route('checkout') }}" type="submit"
                 class="
                   px-6
                   py-3
@@ -66,7 +66,7 @@
                   hover:bg-indigo-700
                 "
               >
-                Proceed to Checkout
+                Proceed To Order
             </a>
           </div>
       </div>

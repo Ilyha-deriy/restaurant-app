@@ -35,7 +35,7 @@ Route::get('/reservation/step-two', [FrontendReservationController::class, 'step
 Route::post('/reservation/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
 Route::get('/add-to-cart/{id}', [FrontendMenuController::class, 'getAddToCart'])->name('menus.addToCart');
 Route::get('/menus/shoping-cart', [FrontendMenuController::class, 'getCart'])->name('menus.shoppingCart');
-Route::get('/menus/checkout', [FrontendMenuController::class, 'getCheckout'])->name('checkout');
+Route::get('/menus/checkout', [FrontendMenuController::class, 'getCheckout'])->name('checkout')->middleware('auth');
 Route::post('/menus/checkout', [FrontendMenuController::class, 'postCheckout'])->name('checkout');
 
 

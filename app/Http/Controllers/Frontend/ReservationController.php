@@ -61,6 +61,9 @@ class ReservationController extends Controller
         ]);
         $reservation = $request->session()->get('reservation');
         $reservation->fill($validated);
+        if (auth()->check()) {
+            $reservation->user_id = auth()->user()->id;
+        }
         $reservation->save();
         $request->session()->forget('reservation');
 
