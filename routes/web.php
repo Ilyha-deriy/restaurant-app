@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryControll
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
 use App\Models\Category;
@@ -37,6 +38,7 @@ Route::get('/add-to-cart/{id}', [FrontendMenuController::class, 'getAddToCart'])
 Route::get('/menus/shoping-cart', [FrontendMenuController::class, 'getCart'])->name('menus.shoppingCart');
 Route::get('/menus/checkout', [FrontendMenuController::class, 'getCheckout'])->name('checkout')->middleware('auth');
 Route::post('/menus/checkout', [FrontendMenuController::class, 'postCheckout'])->name('checkout');
+Route::get('/profile', [ProfileController::class, 'index'])->name('user_profile');
 
 
 
