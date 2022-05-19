@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Cart;
+use App\Models\Cart_Model;
 use App\Models\Reservation;
 use App\Models\Order;
 use App\Models\User;
@@ -35,6 +36,7 @@ class MenuController extends Controller
         }
         $oldcart = session()->get('cart');
         $cart = new Cart($oldcart);
+
         return view('menus.shopping-cart', ['menus' => $cart->items, 'total_price' => $cart->total_price, 'total_quantity' => $cart->total_quantity]);
     }
 

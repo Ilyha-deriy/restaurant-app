@@ -2,12 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
 class Cart
 {
-    use HasFactory;
 
     public $items = null;
     public $total_quantity = 0;
@@ -35,5 +31,6 @@ class Cart
         $this->items[$id] = $stored_item;
         $this->total_quantity++;
         $this->total_price += $item->price;
+
     }
 }

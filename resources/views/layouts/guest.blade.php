@@ -9,12 +9,15 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        @livewireScripts
     </head>
     <body>
         <div class="bg-white shadow-md" x-data="{ isOpen: false }">
@@ -89,9 +92,7 @@
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     <a href="{{ route('menus.shoppingCart') }}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart
-                        <span class="badge">{{ session()->has('cart') ? session()->get('cart')
-                        ->total_quantity : '' }}</span>
+                        @livewire('cart-counter')
                     </a>
                   </div>
               </div>
