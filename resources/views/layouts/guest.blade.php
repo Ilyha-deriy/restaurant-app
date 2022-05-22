@@ -77,6 +77,11 @@
                             </x-dropdown-link>
                         </form>
                             <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="{{ route('user_profile') }}">Profile</a>
+                            @if (Auth::user()->is_admin)
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="{{ route('admin.index') }}">
+                                    Admin
+                                </a>
+                            @endif
                     </x-slot>
                 </x-dropdown>
                 @else

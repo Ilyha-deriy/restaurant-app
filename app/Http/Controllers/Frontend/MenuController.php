@@ -65,6 +65,6 @@ class MenuController extends Controller
         auth()->user()->orders()->save($order);
 
         session()->forget('cart');
-        return redirect('/');
+        return redirect('/')->with('success', 'Order for the reservation is created!');
     }
 }

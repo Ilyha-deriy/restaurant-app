@@ -32,11 +32,8 @@ class CartAdd extends Component
 
     public function render()
     {
-        $oldcart = session()->get('cart');
-        $cart = new Cart($oldcart);
 
-        return view('livewire.cart-add')
-        ->with(compact('cart'));
+        return view('livewire.cart-add');
 
     }
 }
