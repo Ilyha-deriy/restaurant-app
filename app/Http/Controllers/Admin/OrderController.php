@@ -18,4 +18,21 @@ class OrderController extends Controller
 
         return view('admin.orders.index', ['orders' => $orders]);
     }
+
+    public function show($id)
+    {
+        $order = Order::where('id', $id)->firstOrFail();
+
+        $order->cart = unserialize($order->cart);
+
+        return view('admin.orders.show', ['order' => $order]);
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+
+        return to_route('admin.orders.index')->with('danger', 'Order deleted successfully');
+
+    }
 }
