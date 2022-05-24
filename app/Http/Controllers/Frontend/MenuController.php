@@ -60,6 +60,9 @@ class MenuController extends Controller
         $cart = new Cart($oldcart);
         $order = new Order();
         $order->cart = serialize($cart);
+        $request->validate([
+            'reservation_id' => 'required',
+        ]);
         $order->reservation_id = $request->input('reservation_id');
         $order->user_id = auth()->user()->id;
         auth()->user()->orders()->save($order);

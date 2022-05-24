@@ -12,7 +12,7 @@
                         <div class="mt-4">
                             <div class="w-full">
                                 <label for="reservation_id" class="block mb-3 text-sm font-semibold text-gray-500">Reservation</label>
-                                <select class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600" id="reservation_id" name="reservation_id"
+                                <select class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 @error('reservation_id') border-red-400 @enderror" id="reservation_id" name="reservation_id"
                                     class="form-multiselect block w-full mt-1">
                                     @foreach ($reservations as $reservation)
                                         <option value="{{ $reservation->id }}">
@@ -21,6 +21,9 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @error('reservation_id')
+                            <div class="text-sm text-red-400"> Reservation field is required </div>
+                            @enderror
                         </div>
 
                         <div class="mt-4">
