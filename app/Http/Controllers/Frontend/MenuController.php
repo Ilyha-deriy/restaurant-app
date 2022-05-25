@@ -46,7 +46,11 @@ class MenuController extends Controller
         }
         $oldcart = session()->get('cart');
         $cart = new Cart($oldcart);
-        $reservations = auth()->user()->reservations;
+        if (auth()->user()->is_admin) {
+            $reservations = Reservation::all();
+        } else {
+            $reservations = auth()->user()->reservations;
+        }
 
         return view('menus.checkout', ['menus' => $cart->items, 'total_price' => $cart->total_price, 'total_quantity' => $cart->total_quantity])
         ->with(compact('reservations'));

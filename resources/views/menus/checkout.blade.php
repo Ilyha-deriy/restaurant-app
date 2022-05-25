@@ -16,7 +16,7 @@
                                     class="form-multiselect block w-full mt-1">
                                     @foreach ($reservations as $reservation)
                                         <option value="{{ $reservation->id }}">
-                                            {{ $reservation->res_date }}
+                                            {{ $reservation->res_date }} {{ $reservation->first_name }} {{ $reservation->last_name }}
                                         </option>
                                     @endforeach
                                 </select>

@@ -18,11 +18,6 @@
                   <img class="w-full h-48" src="{{ Storage::url($menu->image) }}"
                     alt="Image" />
                     <div class="px-6 py-4">
-                        @foreach ($menu->categories as $category)
-                        <div class="flex mb-2">
-                        <span class="px-4 py-0.5 text-sm bg-red-500 rounded-full text-red-50">{{ $category->name }}</span>
-                        </div>
-                        @endforeach
                     <h4 class="mb-3 text-xl font-semibold tracking-tight text-green-600 uppercase">{{ $menu->name }}</h4>
                     <p class="leading-normal text-gray-700">
                         {{ $menu->description }}
