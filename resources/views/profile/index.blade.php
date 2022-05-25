@@ -5,6 +5,11 @@
     <div class="my-8">
         <h3 class="text-xl font-bold leading-none">My Orders</h3>
     </div>
+                    @if (session()->has('danger'))
+                        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                            <span class="font-medium">{{ session()->get('danger') }}</span>
+                        </div>
+                    @endif
     @foreach ($orders as $order)
     <div class="my-8">
         <h3 class="text-xl font-bold leading-none">Reservation date of the order: {{ $order->reservation->res_date }}</h3>
@@ -38,6 +43,16 @@
                 </div>
             </li>
             @endforeach
+            <div class="flex justify-end space-x-2">
+                <form action="{{ route('profile.destroy', $order->id) }}"
+                    method="POST"
+                    class="mt-4 px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white"
+                    onsubmit="return confirm('Are you sure?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
         </ul>
     </div>
 </div>

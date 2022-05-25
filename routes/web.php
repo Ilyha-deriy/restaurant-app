@@ -40,6 +40,13 @@ Route::get('/menus/shoping-cart', [FrontendMenuController::class, 'getCart'])->n
 Route::get('/menus/checkout', [FrontendMenuController::class, 'getCheckout'])->name('checkout')->middleware('auth');
 Route::post('/menus/checkout', [FrontendMenuController::class, 'postCheckout'])->name('checkout');
 Route::get('/profile', [ProfileController::class, 'index'])->name('user_profile');
+Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/profile/reservations', [ProfileController::class, 'user_reservations'])->name('profile.reservations');
+Route::delete('/profile/reservations/{id}', [ProfileController::class, 'delete_reservation'])->name('profile.reservations.delete');
+
+
+
+
 
 
 
