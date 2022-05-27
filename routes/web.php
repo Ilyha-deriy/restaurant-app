@@ -5,10 +5,12 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
 use App\Models\Category;
@@ -34,11 +36,19 @@ Route::post('/reservation/step-one', [FrontendReservationController::class, 'sto
 Route::get('/reservation/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
 Route::post('/reservation/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
 Route::get('/add-to-cart/{id}', [FrontendMenuController::class, 'getAddToCart'])->name('menus.addToCart');
+Route::get('/menus/shoping-cart', [FrontendMenuController::class, 'getCart'])->name('menus.shoppingCart');
+Route::get('/menus/checkout', [FrontendMenuController::class, 'getCheckout'])->name('checkout')->middleware('auth');
+Route::post('/menus/checkout', [FrontendMenuController::class, 'postCheckout'])->name('checkout');
+Route::get('/profile', [ProfileController::class, 'index'])->name('user_profile');
+Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/profile/reservations', [ProfileController::class, 'user_reservations'])->name('profile.reservations');
+Route::delete('/profile/reservations/{id}', [ProfileController::class, 'delete_reservation'])->name('profile.reservations.delete');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+
+
+
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
@@ -46,6 +56,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/menus', MenuController::class);
     Route::resource('/tables', TableController::class);
     Route::resource('/reservations', ReservationController::class);
+    Route::resource('/orders', OrderController::class);
 });
 
 require __DIR__.'/auth.php';

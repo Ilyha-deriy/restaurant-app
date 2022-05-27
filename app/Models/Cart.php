@@ -2,12 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
 class Cart
 {
-    use HasFactory;
 
     public $items = null;
     public $total_quantity = 0;
@@ -35,5 +31,32 @@ class Cart
         $this->items[$id] = $stored_item;
         $this->total_quantity++;
         $this->total_price += $item->price;
+
+    }
+
+    public function reduceByOne($id) {
+        $this->items[$id]['quantity']--;
+        $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+        $this->total_quantity--;
+        $this->total_price -= $this->items[$id]['item']['price'];
+
+        if ($this->items[$id]['quantity'] <= 0) {
+            unset($this->items[$id]);
+        }
+    }
+
+    public function plusOne($id) {
+        $this->items[$id]['quantity']++;
+        $this->items[$id]['price'] += $this->items[$id]['item']['price'];
+        $this->total_quantity++;
+        $this->total_price += $this->items[$id]['item']['price'];
+
+    }
+
+
+    public function removeItem($id) {
+        $this->total_quantity -= $this->items[$id]['quantity'];
+        $this->total_price -= $this->items[$id]['price'];
+        unset($this->items[$id]);
     }
 }
